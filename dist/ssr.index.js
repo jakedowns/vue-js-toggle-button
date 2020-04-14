@@ -105,6 +105,9 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(10);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+//
 //
 //
 //
@@ -150,11 +153,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-const DEFAULT_COLOR_CHECKED = '#75c791';
-const DEFAULT_COLOR_UNCHECKED = '#bfcbd9';
-const DEFAULT_LABEL_CHECKED = 'on';
-const DEFAULT_LABEL_UNCHECKED = 'off';
-const DEFAULT_SWITCH_COLOR = '#fff';
+var DEFAULT_COLOR_CHECKED = '#75c791';
+var DEFAULT_COLOR_UNCHECKED = '#bfcbd9';
+var DEFAULT_LABEL_CHECKED = 'on';
+var DEFAULT_LABEL_UNCHECKED = 'off';
+var DEFAULT_SWITCH_COLOR = '#fff';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ToggleButton',
@@ -183,13 +186,13 @@ const DEFAULT_SWITCH_COLOR = '#fff';
     },
     color: {
       type: [String, Object],
-      validator(value) {
+      validator: function validator(value) {
         return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* isString */])(value) || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'checked') || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'unchecked') || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'disabled');
       }
     },
     switchColor: {
       type: [String, Object],
-      validator(value) {
+      validator: function validator(value) {
         return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* isString */])(value) || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'checked') || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'unchecked');
       }
     },
@@ -200,8 +203,8 @@ const DEFAULT_SWITCH_COLOR = '#fff';
     labels: {
       type: [Boolean, Object],
       default: false,
-      validator(value) {
-        return typeof value === 'object' ? value.checked || value.unchecked : typeof value === 'boolean';
+      validator: function validator(value) {
+        return (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' ? value.checked || value.unchecked : typeof value === 'boolean';
       }
     },
     height: {
@@ -221,16 +224,17 @@ const DEFAULT_SWITCH_COLOR = '#fff';
     }
   },
   computed: {
-    className() {
-      let { toggled, disabled } = this;
+    className: function className() {
+      var toggled = this.toggled,
+          disabled = this.disabled;
+
 
       return ['vue-js-switch', {
-        toggled,
-        disabled
+        toggled: toggled,
+        disabled: disabled
       }];
     },
-
-    coreStyle() {
+    coreStyle: function coreStyle() {
       return {
         width: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.width),
         height: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.height),
@@ -238,41 +242,37 @@ const DEFAULT_SWITCH_COLOR = '#fff';
         borderRadius: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(Math.round(this.height / 2))
       };
     },
-
-    buttonRadius() {
+    buttonRadius: function buttonRadius() {
       return this.height - this.margin * 2;
     },
-
-    distance() {
+    distance: function distance() {
       return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.width - this.height + this.margin);
     },
+    buttonStyle: function buttonStyle() {
+      var transition = 'transform ' + this.speed + 'ms';
+      var margin = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.margin);
 
-    buttonStyle() {
-      const transition = `transform ${this.speed}ms`;
-      const margin = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.margin);
+      var transform = this.toggled ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["d" /* translate */])(this.distance, margin) : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["d" /* translate */])(margin, margin);
 
-      const transform = this.toggled ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["d" /* translate */])(this.distance, margin) : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["d" /* translate */])(margin, margin);
-
-      const background = this.switchColor ? this.switchColorCurrent : null;
+      var background = this.switchColor ? this.switchColorCurrent : null;
 
       return {
         width: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.buttonRadius),
         height: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.buttonRadius),
-        transition,
-        transform,
-        background
+        transition: transition,
+        transform: transform,
+        background: background
       };
     },
-
-    labelStyle() {
+    labelStyle: function labelStyle() {
       return {
         lineHeight: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.height),
         fontSize: this.fontSize ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.fontSize) : null
       };
     },
+    colorChecked: function colorChecked() {
+      var color = this.color;
 
-    colorChecked() {
-      let { color } = this;
 
       if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["e" /* isObject */])(color)) {
         return color || DEFAULT_COLOR_CHECKED;
@@ -280,37 +280,30 @@ const DEFAULT_SWITCH_COLOR = '#fff';
 
       return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(color, 'checked', DEFAULT_COLOR_CHECKED);
     },
-
-    colorUnchecked() {
+    colorUnchecked: function colorUnchecked() {
       return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.color, 'unchecked', DEFAULT_COLOR_UNCHECKED);
     },
-
-    colorDisabled() {
+    colorDisabled: function colorDisabled() {
       return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.color, 'disabled', this.colorCurrent);
     },
-
-    colorCurrent() {
+    colorCurrent: function colorCurrent() {
       return this.toggled ? this.colorChecked : this.colorUnchecked;
     },
-
-    labelChecked() {
+    labelChecked: function labelChecked() {
       return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.labels, 'checked', DEFAULT_LABEL_CHECKED);
     },
-
-    labelUnchecked() {
+    labelUnchecked: function labelUnchecked() {
       return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.labels, 'unchecked', DEFAULT_LABEL_UNCHECKED);
     },
-
-    switchColorChecked() {
+    switchColorChecked: function switchColorChecked() {
       return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.switchColor, 'checked', DEFAULT_SWITCH_COLOR);
     },
-
-    switchColorUnchecked() {
+    switchColorUnchecked: function switchColorUnchecked() {
       return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.switchColor, 'unchecked', DEFAULT_SWITCH_COLOR);
     },
+    switchColorCurrent: function switchColorCurrent() {
+      var switchColor = this.switchColor;
 
-    switchColorCurrent() {
-      let { switchColor } = this;
 
       if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["e" /* isObject */])(this.switchColor)) {
         return this.switchColor || DEFAULT_SWITCH_COLOR;
@@ -318,23 +311,23 @@ const DEFAULT_SWITCH_COLOR = '#fff';
 
       return this.toggled ? this.switchColorChecked : this.switchColorUnchecked;
     }
-
   },
   watch: {
-    value(value) {
+    value: function value(_value) {
       if (this.sync) {
-        this.toggled = !!value;
+        this.toggled = !!_value;
       }
     }
   },
-  data() {
+  data: function data() {
     return {
       toggled: !!this.value
     };
   },
+
   methods: {
-    toggle(event) {
-      const toggled = !this.toggled;
+    toggle: function toggle(event) {
+      var toggled = !this.toggled;
 
       if (!this.sync) {
         this.toggled = toggled;
@@ -485,10 +478,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('label', {
     class: _vm.className
   }, [_c('input', {
-    staticClass: "v-switch-input",
+    staticClass: "v-switch-input jakedowns",
     attrs: {
       "type": "checkbox",
       "name": _vm.name,
+      "value": "1",
       "disabled": _vm.disabled
     },
     domProps: {
@@ -722,6 +716,7 @@ const translate = (x, y) => {
   return `translate(${x}, ${y})`
 }
 /* harmony export (immutable) */ __webpack_exports__["d"] = translate;
+
 
 
 /***/ })

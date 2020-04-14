@@ -2,8 +2,9 @@
 <label :class="className">
   <input
     type="checkbox"
-    class="v-switch-input"
+    class="v-switch-input jakedowns"
     :name="name"
+    :value="value_value"
     :checked="value"
     :disabled="disabled"
     @change.stop="toggle"
@@ -52,9 +53,15 @@ const DEFAULT_SWITCH_COLOR = '#fff'
 export default {
   name: 'ToggleButton',
   props: {
+    /* this should be renamed to "checked" ? */
     value: {
       type: Boolean,
       default: false
+    },
+    /* is there a better name for this? */
+    value_value: {
+      type: Boolean,
+      default: 1
     },
     name: {
       type: String
@@ -86,7 +93,7 @@ export default {
     switchColor: {
       type: [String, Object],
       validator (value) {
-        return isString(value) 
+        return isString(value)
           || has(value, 'checked')
           || has(value, 'unchecked')
       }
@@ -123,7 +130,7 @@ export default {
   computed: {
     className () {
       let { toggled, disabled } = this
-      
+
       return ['vue-js-switch', {
         toggled,
         disabled
