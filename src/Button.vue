@@ -1,10 +1,12 @@
 <template>
 <label :class="className">
+  <!-- if you include a hidden input, with your "unchecked" value, it helps in cases like using Laravel eloquent tinyint booleans -->
+  <input :name="name" type="hidden" :value="valueUnchecked" v-if="uncheckable">
   <input
     type="checkbox"
     class="v-switch-input jakedowns"
     :name="name"
-    :value="value_value"
+    :value="valueChecked"
     :checked="value"
     :disabled="disabled"
     @change.stop="toggle"
@@ -53,15 +55,20 @@ const DEFAULT_SWITCH_COLOR = '#fff'
 export default {
   name: 'ToggleButton',
   props: {
-    /* this should be renamed to "checked" ? */
+    /* this would probably be better named "checked", but that's just me */
     value: {
       type: Boolean,
       default: false
     },
-    /* is there a better name for this? */
-    value_value: {
-      type: Boolean,
-      default: 1
+    valueChecked: {
+      //type: Boolean, String? i dunno...
+      default: 1 // could default to null or "on" or something, i'm choosing 1
+    },
+    valueUnchecked: {
+      default: 0
+    },
+    uncheckable: {
+      default: true
     },
     name: {
       type: String

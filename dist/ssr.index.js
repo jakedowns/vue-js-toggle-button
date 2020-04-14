@@ -150,6 +150,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 //
 //
 //
+//
 
 
 
@@ -162,9 +163,17 @@ var DEFAULT_SWITCH_COLOR = '#fff';
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ToggleButton',
   props: {
+    /* this would probably be better named "checked", but that's just me */
     value: {
       type: Boolean,
       default: false
+    },
+    valueChecked: {
+      //type: Boolean, String? i dunno...
+      default: 1 // could default to null or "on" or something, i'm choosing 1
+    },
+    valueUnchecked: {
+      default: 0
     },
     name: {
       type: String
@@ -478,14 +487,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('label', {
     class: _vm.className
   }, [_c('input', {
+    attrs: {
+      "name": _vm.name,
+      "type": "hidden"
+    },
+    domProps: {
+      "value": _vm.valueUnchecked
+    }
+  }), _vm._v(" "), _c('input', {
     staticClass: "v-switch-input jakedowns",
     attrs: {
       "type": "checkbox",
       "name": _vm.name,
-      "value": "1",
       "disabled": _vm.disabled
     },
     domProps: {
+      "value": _vm.valueChecked,
       "checked": _vm.value
     },
     on: {
